@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Fasting (Sawm) — Grade 4 Pre-Lesson Quiz</title>
+<style>
+:root{
+  --emerald:#0e6b4f; --emerald2:#0b5741; --emerald3:#149671; --deep:#0a3d30;
+  --cream:#fbf5e9; --white:#fff; --gold:#c8a24b; --gold2:#e0bb62;
+  --ink:#22423a; --muted:#5c7a6e;
+  --good:#1d9e63; --goodbg:#e7f6ee; --bad:#d67c5b; --badbg:#fdf0e8;
+  --shadow:0 10px 24px rgba(14,107,79,.12), 0 2px 6px rgba(0,0,0,.06);
+}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0}
+body{font-family:"Segoe UI",Tahoma,Verdana,system-ui,sans-serif;background:var(--cream);color:var(--ink);min-height:100vh}
+body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:0;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='84' height='84' viewBox='0 0 84 84'%3E%3Cg fill='none' stroke='%23c8a24b' stroke-opacity='.16' stroke-width='1.6'%3E%3Cpath d='M42 8l9.2 24.8L76 42l-24.8 9.2L42 76l-9.2-24.8L8 42l24.8-9.2z'/%3E%3Ccircle cx='42' cy='42' r='7'/%3E%3C/g%3E%3C/svg%3E")}
+.sky{position:fixed;inset:0;overflow:hidden;pointer-events:none;z-index:0}
+.sky .fl{position:absolute;animation:floaty 12s ease-in-out infinite}
+@keyframes floaty{0%,100%{transform:translateY(0) rotate(-4deg)}50%{transform:translateY(-16px) rotate(4deg)}}
+.sky .tw{position:absolute;color:var(--gold2);animation:tw 3.5s ease-in-out infinite}
+@keyframes tw{0%,100%{opacity:.2}50%{opacity:1}}
+@media (prefers-reduced-motion:reduce){.sky .fl,.sky .tw,.fb{animation:none}}
+.shell{position:relative;z-index:1;max-width:940px;margin:0 auto;padding:18px 14px 70px}
+.screen{display:none}
+.screen.active{display:block;animation:fadeUp .45s ease}
+@keyframes fadeUp{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+.banner{position:relative;overflow:hidden;border-radius:26px;padding:26px 26px 22px;color:#fff;
+  background:linear-gradient(135deg,var(--emerald),var(--deep));border:3px solid rgba(224,187,98,.5);box-shadow:var(--shadow);margin-bottom:16px}
+.banner h1{margin:.1em 0 .2em;font-size:clamp(1.45rem,3.2vw,2.2rem);letter-spacing:.5px}
+.banner .sub{color:#e8f3ee;font-weight:600}
+.banner .arabic{position:absolute;top:16px;right:20px;background:var(--gold2);color:#5b4014;font-size:1.5rem;padding:6px 14px;border-radius:14px;box-shadow:0 4px 10px rgba(0,0,0,.25)}
+.banner .deco{position:absolute;pointer-events:none}
+.chip{display:inline-block;background:rgba(255,255,255,.14);border:1px solid rgba(224,187,98,.55);color:#fff;padding:6px 14px;border-radius:999px;font-weight:600;font-size:.92rem}
+.card{background:#fff;border-radius:22px;box-shadow:var(--shadow);padding:20px;border:1px solid #eadfc7}
+.card.goldtop{border-top:6px solid var(--gold2)}
+.h2{color:var(--emerald2);margin:.2em 0 .5em}
+.note{background:#fff8ea;border:2px dashed #e7d7ac;color:#6b5a25;border-radius:14px;padding:10px 14px;font-size:.96rem}
+label.small{font-size:.95rem;color:var(--muted);font-weight:700}
+input.txt{width:100%;padding:13px 16px;border-radius:14px;border:2px solid #d8e7df;font-size:1.05rem;margin-top:6px}
+input.txt:focus{outline:3px solid rgba(200,162,75,.35);border-color:var(--gold)}
+.btn{display:inline-flex;align-items:center;gap:10px;cursor:pointer;border:0;border-radius:999px;padding:14px 26px;
+  font-size:1.08rem;font-weight:700;color:#fff;background:linear-gradient(135deg,var(--emerald3),var(--emerald));
+  box-shadow:0 6px 16px rgba(14,107,79,.25);transition:transform .15s ease}
+.btn:hover{transform:translateY(-2px)}
+.btn:disabled{opacity:.45;cursor:not-allowed;transform:none}
+.btn.gold{background:linear-gradient(135deg,var(--gold2),var(--gold));color:#4b3608}
+.btn.ghost{background:#fff;color:var(--emerald2);border:2px solid #cfe4da;box-shadow:none}
+.btn.big{font-size:1.2rem;padding:16px 34px}
+.btnrow{display:flex;gap:12px;justify-content:flex-end;margin-top:16px;flex-wrap:wrap}
+.btnrow .left{margin-right:auto}
+.quiztop{display:flex;align-items:center;justify-content:space-between;gap:10px;margin:2px 2px 10px}
+.progresslabel{font-weight:800;color:var(--emerald2)}
+.track{height:16px;background:#e9f2ee;border-radius:999px;overflow:hidden;border:1px solid #d9e8e0}
+.fill{height:100%;width:0;background:linear-gradient(90deg,var(--emerald3),var(--gold2));border-radius:999px;transition:width .4s ease}
+.dots{display:flex;gap:8px;margin:10px 2px 0}
+.dot{width:12px;height:12px;border-radius:50%;background:#dbe8e1;border:2px solid #cfe0d7;transition:all .3s}
+.dot.cur{background:var(--gold2);border-color:var(--gold);transform:scale(1.3)}
+.dot.ok{background:var(--good);border-color:#12774a}
+.dot.bad{background:#e28257;border-color:#bd5f3a}
+.qcard{position:relative;background:#fff;border-radius:26px;border:1px solid #eadfc7;border-top:8px solid var(--gold2);box-shadow:var(--shadow);padding:20px 22px 18px;animation:fadeUp .35s ease}
+.qhead{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:8px}
+.qnum{background:var(--emerald);color:#fff;font-weight:800;padding:6px 14px;border-radius:999px}
+.qtype{background:#eef7f2;color:var(--emerald2);border:1px solid #cfe4da;font-weight:700;padding:6px 12px;border-radius:999px;font-size:.9rem}
+.topicchip{background:#fdf6e7;border:1px solid #ecd9a6;color:#7c6220;font-weight:600;padding:6px 12px;border-radius:999px;font-size:.85rem}
+.illo{display:flex;justify-content:center;margin:10px auto 6px}
+.illo svg{width:min(340px,86vw);height:auto;filter:drop-shadow(0 6px 10px rgba(14,107,79,.1))}
+.qtext{font-size:1.28rem;line-height:1.5;margin:8px 0 4px;font-weight:600}
+.instruct{color:var(--muted);font-weight:600;font-size:.97rem;margin:4px 0 12px}
+.opts{display:grid;gap:10px}
+.opt{display:flex;align-items:center;gap:12px;width:100%;text-align:left;background:#fff;border:3px solid #dcebe3;border-radius:18px;padding:12px 16px;font-size:1.05rem;font-weight:600;color:var(--ink);cursor:pointer;transition:all .18s ease}
+.opt:hover{border-color:var(--gold2);transform:translateY(-2px);box-shadow:0 6px 14px rgba(14,107,79,.1)}
+.opt .key{flex:0 0 34px;height:34px;border-radius:50%;display:grid;place-items:center;background:#f0f7f3;color:var(--emerald2);font-weight:800;border:2px solid #d7e8df}
+.opt.selected{border-color:var(--emerald3);background:#f2fbf7}
+.opt.selected .key{background:var(--emerald3);color:#fff}
+.opt.correct{border-color:var(--good);background:var(--goodbg)}
+.opt.wrongsel{border-color:#e28257;background:var(--badbg)}
+.opt.dim{opacity:.6}
+.opt:disabled{cursor:default}
+.tf{grid-template-columns:1fr 1fr}
+.opt.tfbtn{justify-content:center;min-height:86px;font-size:1.4rem}
+.pics{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+@media(max-width:640px){.pics{grid-template-columns:1fr;grid-template-rows:none}}
+.pic{padding:10px;border-radius:18px;border:3px solid #dcebe3;background:#fff;cursor:pointer;text-align:center;transition:all .18s}
+.pic svg{width:100%;max-width:260px;height:auto;border-radius:12px}
+.pic .cap{font-weight:700;margin-top:6px;color:#3f6152}
+.pic .key{display:inline-grid;place-items:center;width:30px;height:30px;border-radius:50%;background:#f0f7f3;color:var(--emerald2);font-weight:800;border:2px solid #d7e8df;margin-bottom:6px}
+.pic.selected{border-color:var(--emerald3);background:#f2fbf7}
+.pic.correct{border-color:var(--good);background:var(--goodbg)}
+.pic.wrongsel{border-color:#e28257;background:var(--badbg)}
+.pic.dim{opacity:.6}
+.tray{display:flex;flex-wrap:wrap;gap:10px;min-height:64px;background:#fdf8ec;border:2.5px dashed #e2cf9e;border-radius:16px;padding:10px;margin:10px 0}
+.bins{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+@media(max-width:640px){.bins{grid-template-columns:1fr}}
+.bin{border-radius:18px;padding:12px;min-height:150px;display:flex;flex-direction:column;gap:8px}
+.bin.good{background:#eefaf3;border:3px dashed #7cc9a4}
+.bin.lowers{background:#fdf3ec;border:3px dashed #e6b092}
+.binhead{display:flex;align-items:center;gap:8px;font-weight:800}
+.bin.good .binhead{color:#147a53}
+.bin.lowers .binhead{color:#a24f2d}
+.bin.dragover{transform:scale(1.02);box-shadow:inset 0 0 0 3px rgba(200,162,75,.5)}
+.boxes{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+@media(max-width:680px){.boxes{grid-template-columns:1fr}}
+.box{border:3px solid #dcebe3;border-radius:18px;padding:12px;min-height:150px;background:#fff;transition:box-shadow .2s}
+.box .meaning{font-weight:700;color:#52483a;background:#fdf6e7;border:1px solid #ecd9a6;border-radius:12px;padding:8px 10px;font-size:.95rem;margin-bottom:8px}
+.box.dragover{box-shadow:inset 0 0 0 3px rgba(200,162,75,.55)}
+.ddcard{display:flex;align-items:center;gap:9px;background:#fff;border:2.5px solid #e4d4a8;border-radius:14px;padding:9px 12px;font-weight:700;cursor:grab;user-select:none;box-shadow:0 3px 8px rgba(0,0,0,.05);color:#4c4433;touch-action:manipulation}
+.ddcard.selected{outline:3px solid var(--gold2)}
+.ddcard.ok{border-color:var(--good);background:var(--goodbg)}
+.ddcard.bad{border-color:#e28257;background:var(--badbg)}
+.ddcard svg{flex:0 0 22px;width:22px;height:22px}
+.cardyard{display:flex;flex-wrap:wrap;gap:8px;align-content:flex-start}
+.match{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+@media(max-width:680px){.match{grid-template-columns:1fr}}
+.mcol{display:flex;flex-direction:column;gap:10px}
+.mcolhead{font-weight:800;color:var(--emerald2)}
+.mitem{display:flex;align-items:center;gap:10px;background:#fff;border:2.5px solid #dcebe3;border-radius:14px;padding:11px 12px;cursor:pointer;text-align:left;font-weight:600;transition:all .15s}
+.mitem:hover{border-color:var(--gold2)}
+.mitem.pending{box-shadow:0 0 0 3px var(--gold2)}
+.mitem .badge{margin-left:auto;flex:0 0 26px;height:26px;width:26px;border-radius:50%;display:grid;place-items:center;color:#fff;font-weight:800;font-size:.9rem}
+.mitem.ok{border-color:var(--good);background:var(--goodbg)}
+.mitem.bad{border-color:#e28257;background:var(--badbg)}
+.mitem svg{flex:0 0 24px;width:24px;height:24px}
+.fb{margin-top:14px;border-radius:18px;padding:14px 16px;animation:pop .3s ease}
+@keyframes pop{from{transform:scale(.96);opacity:0}to{transform:none;opacity:1}}
+.fb.good{background:var(--goodbg);border:2px solid #79c6a1}
+.fb.bad{background:var(--badbg);border:2px solid #eba383}
+.fb .title{font-weight:800;font-size:1.08rem;display:flex;gap:8px;align-items:center}
+.fb.good .title{color:#157a4e}
+.fb.bad .title{color:#a24f2d}
+.fb .lines{margin:8px 0 4px;font-weight:600}
+.fb .lines div{margin:3px 0}
+.fb .exp{margin-top:8px;background:rgba(255,255,255,.8);border-radius:12px;padding:10px 12px;font-size:.98rem}
+.fb .ref{margin-top:6px;font-size:.85rem;color:#6b5a25;font-weight:600}
+/* results */
+.restop{display:flex;gap:18px;align-items:center;flex-wrap:wrap}
+.ring{position:relative;width:170px;height:170px;flex:0 0 auto}
+.ring svg{transform:rotate(-90deg)}
+.ring .ringbg{stroke:#e6efe9;fill:none;stroke-width:15}
+.ring .ringfg{stroke:url(#goldgrad);fill:none;stroke-width:15;stroke-linecap:round;transition:stroke-dashoffset 1.2s ease}
+.ring .val{position:absolute;inset:0;display:grid;place-items:center;text-align:center}
+.ring .val b{font-size:1.9rem;color:var(--emerald2);display:block;line-height:1}
+.ring .val span{color:var(--muted);font-weight:700}
+.bandchip{display:inline-block;padding:8px 16px;border-radius:999px;font-weight:800}
+.bandchip.b1{background:#e9f7ef;color:#147a53;border:2px solid #79c6a1}
+.bandchip.b2{background:#fdf6e3;color:#8a6a1e;border:2px solid #ecd9a6}
+.bandchip.b3{background:#fdf0e8;color:#a24f2d;border:2px solid #eba383}
+.revhead{display:grid;grid-template-columns:34px 1fr auto;gap:10px;align-items:center;margin-top:14px;padding:0 4px;color:var(--muted);font-weight:800;font-size:.85rem;text-transform:uppercase;letter-spacing:.6px}
+.revlist{display:grid;gap:8px;margin-top:4px}
+.rrow{display:grid;grid-template-columns:34px 1fr auto;gap:10px;align-items:flex-start;background:#fbfdfc;border:1px solid #e2ece7;border-radius:12px;padding:9px 12px}
+.rrow .qn{flex:0 0 30px;height:30px;border-radius:50%;display:grid;place-items:center;color:#fff;font-weight:800;background:#9db8ac}
+.rrow.good .qn{background:var(--good)}
+.rrow.bad .qn{background:#e28257}
+.rrow .txt{font-weight:600;font-size:.95rem}
+.rrow .sub{color:var(--muted);font-weight:600;font-size:.85rem;margin-top:2px}
+.rn{font-weight:700;font-size:.82rem;padding:3px 10px;border-radius:999px;white-space:nowrap}
+.rn.good{background:var(--goodbg);color:#137a4d}
+.rn.bad{background:var(--badbg);color:#a24f2d}
+.aboutnote{background:#fff8ea;border:2px dashed #e7d7ac;border-radius:14px;padding:10px 14px;color:#6b5a25;margin-top:12px}
+/* dashboard */
+.stat{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:8px 0 14px}
+@media(max-width:680px){.stat{grid-template-columns:repeat(2,1fr)}}
+.stat .sbox{background:#fff;border:1px solid #eadfc7;border-radius:16px;padding:12px;text-align:center;box-shadow:var(--shadow)}
+.stat b{font-size:1.5rem;color:var(--emerald2)}
+.stat span{color:var(--muted);font-weight:700;font-size:.82rem}
+.attempt{background:#fff;border:1px solid #eadfc7;border-radius:16px;padding:12px 14px;margin-bottom:10px;box-shadow:var(--shadow)}
+.attempt .ahead{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.attempt .score{margin-left:auto;font-weight:800;color:var(--emerald2)}
+.gridq{display:grid;grid-template-columns:repeat(10,1fr);gap:5px;margin-top:8px;max-width:420px}
+.gq{height:30px;border-radius:8px;display:grid;place-items:center;color:#fff;font-weight:800;font-size:.8rem}
+.gq.ok{background:var(--good)}
+.gq.bad{background:#e28257}
+.detrow{display:grid;grid-template-columns:26px 1fr;gap:8px;padding:6px 0;border-top:1px dashed #e8e2d2;font-size:.9rem;margin-top:6px}
+.detrow b{color:var(--emerald2)}
+.topicbar{margin:8px 0}
+.topicbar .tname{display:flex;justify-content:space-between;font-weight:700;font-size:.92rem;margin-bottom:4px}
+.topicbar .ttrack{height:12px;background:#e9f2ee;border-radius:999px;overflow:hidden}
+.topicbar .tfill{height:100%;border-radius:999px;background:linear-gradient(90deg,var(--good),var(--emerald3))}
+.topicbar.weak .tfill{background:linear-gradient(90deg,#e28257,#d67c5b)}
+table.sheet{border-collapse:collapse;width:100%;margin-top:10px;background:#fff}
+table.sheet th,table.sheet td{border:1px solid #c9b98a;padding:6px 8px;text-align:center;font-size:.9rem}
+table.sheet th{background:#eef7f2;color:var(--emerald2)}
+table.sheet td:first-child{min-width:140px}
+.keyitem{border-bottom:1px dashed #e8e2d2;padding:8px 0}
+.keyitem b{color:var(--emerald2)}
+.hint{color:var(--muted);font-weight:600;font-size:.9rem}
+.count{font-size:.85rem;color:var(--muted);font-weight:700}
+details summary{cursor:pointer;font-weight:800;color:var(--emerald2)}
+.confetti{position:fixed;top:-20px;z-index:9;pointer-events:none;animation:fall linear forwards}
+@keyframes fall{to{transform:translateY(105vh) rotate(720deg);opacity:.85}}
+.hidden{display:none}
+@media print{.noprint{display:none}.sky,body::before{display:none}}
+</style>
+</head>
+<body>
+<div class="sky" id="sky" aria-hidden="true"></div>
+<main class="shell">
+
+  <!-- START SCREEN -->
+  <section id="screen-start" class="screen active">
+    <div class="banner">
+      <span id="deco-moon" class="deco" style="right:170px;top:14px"></span>
+      <span id="deco-lant1" class="deco" style="left:14px;top:10px"></span>
+      <span id="deco-lant2" class="deco" style="left:70px;top:34px"></span>
+      <div class="arabic" dir="rtl">الصَّوْم</div>
+      <span class="chip">Grade 4 · Islamic Studies · Chapter 10</span>
+      <h1>Fasting (Sawm) — Pre-Lesson Quiz 🌙</h1>
+      <div class="sub">Before our lesson starts: let’s find out what you already know!</div>
+    </div>
+    <div class="card goldtop" style="margin-top:14px">
+      <h2 class="h2">Hello, star learner! ✨</h2>
+      <p>This is a <b>diagnostic quiz</b> — a friendly check of what you already know about fasting (Sawm) in Ramadan.
+      It is <b>not a test</b>, and it does not give you marks for your report card.
+      There are <b>10 questions</b> with pictures, matching and drag-and-drop fun.</p>
+      <label class="small" for="studentName">Write your name (or leave it empty to stay “Star Learner”):</label>
+      <input class="txt" id="studentName" maxlength="40" placeholder="Your name…">
+      <div class="note" style="margin-top:12px">🔒 Your answers stay on this computer only. Nothing is sent anywhere.</div>
+      <div class="btnrow" style="margin-top:16px">
+        <button class="btn ghost" id="btnDash1">👨‍🏫 Teacher Dashboard</button>
+        <button class="btn big" id="btnStart">Start the Quiz 🌙</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- QUIZ SCREEN -->
+  <section id="screen-quiz" class="screen">
+    <div class="banner" style="padding:16px 20px">
+      <div class="arabic" dir="rtl">الصَّوْم</div>
+      <h1 style="font-size:1.3rem">Fasting (Sawm) — Pre-Lesson Quiz</h1>
+      <div class="sub" id="helloLine">Hello!</div>
+    </div>
+    <div class="quiztop">
+      <span class="progresslabel" id="progressLabel">Question 1 of 10</span>
+      <span class="chip" id="scoreLine">Score: 0 / 10</span>
+    </div>
+    <div class="track"><div class="fill" id="progressFill"></div></div>
+    <div class="dots" id="dots"></div>
+    <div id="qcard"></div>
+    <div class="btnrow" id="quizBtnRow">
+      <span class="btnrow left"><span class="hint" id="placeHint"></span></span>
+      <button class="btn gold" id="btnCheck" disabled>✅ Check Answer</button>
+      <button class="btn" id="btnNext" disabled>Next Question ➜</button>
+    </div>
+  </section>
+
+  <!-- RESULTS SCREEN -->
+  <section id="screen-results" class="screen">
+    <div class="banner">
+      <div class="arabic" dir="rtl">الصَّوْم</div>
+      <h1>My Quiz Results 🌟</h1>
+      <div class="sub" id="resHello">Well done for finishing!</div>
+    </div>
+    <div class="card goldtop" style="margin-top:14px">
+      <div class="restop">
+        <div class="ring">
+          <svg width="170" height="170" viewBox="0 0 170 170">
+            <defs><linearGradient id="goldgrad" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0" stop-color="#e0bb62"/><stop offset="1" stop-color="#149671"/>
+            </linearGradient></defs>
+            <circle class="ringbg" cx="85" cy="85" r="72"/>
+            <circle class="ringfg" id="ringFg" cx="85" cy="85" r="72" stroke-dasharray="452" stroke-dashoffset="452"/>
+          </svg>
+          <div class="val"><div><b id="scoreBig">0/10</b><span id="pctBig">0%</span></div></div>
+        </div>
+        <div style="flex:1;min-width:230px">
+          <div id="bandChip" class="bandchip b2">…</div>
+          <p id="bandMsg" style="font-weight:600"></p>
+        </div>
+      </div>
+      <h2 class="h2">How I did 📋</h2>
+      <div class="revhead"><span>Q</span><span>Question</span><span>Result</span></div>
+      <div class="revlist" id="reviewList"></div>
+      <h2 class="h2" style="margin-top:18px">Concepts to revise before/with our lesson 🔎</h2>
+      <p class="hint">These are things we will learn together in class:</p>
+      <ul class="revlist revhead" style="display:block" id="reviseList"></ul>
+      <div class="aboutnote">💛 <b>Remember:</b> this result shows what you already know <i>today</i> about fasting — it does <b>not</b> measure how clever you are. Everyone will learn lots in our lesson together, Inshaa’Allah!</div>
+      <p style="font-weight:800;font-size:1.05rem;color:var(--emerald2);margin-top:12px">Great effort! Now let’s explore what fasting teaches us. 🌙</p>
+      <div class="btnrow noprint" style="margin-top:14px">
+        <button class="btn ghost" id="btnDash2">👨‍🏫 Teacher Dashboard</button>
+        <button class="btn" id="btnHome1">🏠 Back to Start</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- TEACHER DASHBOARD -->
+  <section id="screen-dash" class="screen">
+    <div class="banner">
+      <div class="arabic" dir="rtl">الصَّوْم</div>
+      <h1>👨‍🏫 Teacher Dashboard</h1>
+      <div class="sub">Pre-lesson diagnostic — Fasting (Sawm), Grade 4</div>
+    </div>
+    <div class="stat" id="dashStats"></div>
+    <div class="card goldtop" style="margin-bottom:14px">
+      <h2 class="h2">Student attempts 📝</h2>
+      <div id="dashAttempts"></div>
+      <div class="btnrow noprint" style="margin-top:10px">
+        <span class="btnrow left"><span class="hint">Results are saved only in this browser on this computer (localStorage). Nothing is uploaded or shared — export a copy yourself.</span></span>
+        <button class="btn ghost" id="btnExportCsv">⬇️ Export CSV</button>
+        <button class="btn ghost" id="btnExportJson">⬇️ Export JSON</button>
+        <button class="btn ghost" id="btnPrintSheet">🖨️ Print key + sheet</button>
+        <button class="btn ghost" id="btnClear">🗑️ Clear results</button>
+      </div>
+    </div>
+    <div class="card goldtop" style="margin-bottom:14px">
+      <h2 class="h2">Performance by topic 📊</h2>
+      <p class="hint">Percentage of students who answered each question correctly. Weak topics (under 70&thinsp;%) are starred — give them more time in the lesson.</p>
+      <div id="dashTopics"></div>
+      <h2 class="h2" style="margin-top:16px">Common misconceptions ⚠️</h2>
+      <ul id="dashMiscon" style="margin:.2em 0 0;padding-left:22px"></ul>
+      <h2 class="h2" style="margin-top:16px">Suggested lesson focus 🎯</h2>
+      <ul id="dashFocus" style="margin:.2em 0 0;padding-left:22px"></ul>
+    </div>
+    <div class="card goldtop">
+      <h2 class="h2">Teacher answer key 🔑</h2>
+      <p class="hint">Source: <i>fasting grade 4.pdf</i> — Islamic Studies Grade 4, Chapter 10, textbook pages 45–47.</p>
+      <div id="dashKey"></div>
+      <h2 class="h2" style="margin-top:16px">Blank results-recording sheet 📄</h2>
+      <p class="hint">Print and fill in by hand during the lesson.</p>
+      <table class="sheet" id="sheetTable"></table>
+      <div class="btnrow noprint" style="margin-top:14px"><button class="btn" id="btnBackStart">🏠 Back to Start</button></div>
+    </div>
+  </section>
+</main>
+<script src="quiz-data.js"></script>
+<script src="quiz-app.js"></script>
+<script src="quiz-dash.js"></script>
+</body>
+</html>
